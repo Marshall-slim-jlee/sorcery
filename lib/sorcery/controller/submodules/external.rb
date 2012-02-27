@@ -89,7 +89,7 @@ module Sorcery
               attrs.each do |k,v|
                 @user.send(:"#{k}=", v)
               end
-              @user.save(:validate => false)
+              @user.save
               user_class.sorcery_config.authentications_class.create!({config.authentications_user_id_attribute_name => @user.id, config.provider_attribute_name => provider, config.provider_uid_attribute_name => @user_hash[:uid]})
             end
             @user
