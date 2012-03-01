@@ -92,8 +92,8 @@ module Sorcery
               @user.save
               user_class.sorcery_config.authentications_class.create!({config.authentications_user_id_attribute_name => @user.id, 
                 config.provider_attribute_name => provider, 
-                config.provider_uid_attribute_name => @user_hash[:uid]},
-                :token => @provider.access_token.token)
+                config.provider_uid_attribute_name => @user_hash[:uid],
+                config.provider_token_attribute_name => @provider.access_token.token)}
             end
             @user
           end
