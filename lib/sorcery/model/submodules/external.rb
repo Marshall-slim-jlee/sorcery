@@ -20,7 +20,8 @@ module Sorcery
                           :authentications_user_id_attribute_name,
                           :provider_attribute_name,
                           :provider_uid_attribute_name,
-                          :provider_token_attribute_name
+                          :provider_token_attribute_name,
+                          :provider_secret_attribute_name
 
           end
           
@@ -29,7 +30,8 @@ module Sorcery
                              :@authentications_user_id_attribute_name => :user_id,
                              :@provider_attribute_name                => :provider,
                              :@provider_uid_attribute_name            => :uid,
-                             :@provider_token_attribute_name          => :token)
+                             :@provider_token_attribute_name          => :token,
+                             :@provider_secret_attribute_name         => :secret)
 
             reset!
           end
