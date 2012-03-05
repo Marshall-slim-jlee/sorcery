@@ -90,11 +90,14 @@ module Sorcery
                 @user.send(:"#{k}=", v)
               end
               @user.save
-              user_class.sorcery_config.authentications_class.create!({config.authentications_user_id_attribute_name => @user.id, 
+              
+              attributes = {config.authentications_user_id_attribute_name => @user.id, 
                 config.provider_attribute_name => provider, 
                 config.provider_uid_attribute_name => @user_hash[:uid],
-                config.provider_token_attribute_name => @provider.access_token.token,
-                config.provider_secret_attribute_name => @provider.access_token.secret})
+                config.provider_token_attribute_name => @provider.access_token.token}
+              attributes.merge!({config.provider_secret_attribute_name => @provider.access_token.secret}) if provider == :twitter
+              
+              user_class.sorcery_config.authentications_class.create! attributes
             end
             @user
           end
